@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1032.0" spacing="80.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.LevelWinController">
+   <children>
+      <Label fx:id="labelCongrat" text="Label" textFill="#21398d">
+         <font>
+            <Font name="Tw Cen MT Condensed" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelLevel" text="Label">
+         <font>
+            <Font name="Tw Cen MT Condensed" size="40.0" />
+         </font>
+      </Label>
+      <Button fx:id="button" mnemonicParsing="false" prefHeight="48.0" prefWidth="116.0" text="Next">
+         <font>
+            <Font name="Tw Cen MT Condensed" size="25.0" />
+         </font></Button>
+   </children>
+</VBox>

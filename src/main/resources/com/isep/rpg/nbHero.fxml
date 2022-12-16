@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="994.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.isep.rpg.controllers.NbHeroController">
+
+   <children>
+      <Label text="With how many heros do you want to play ?" textFill="#21398d">
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Tw Cen MT Condensed" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="label" alignment="TOP_CENTER" prefHeight="67.0" prefWidth="376.0" textAlignment="CENTER" textFill="RED">
+         <padding>
+            <Insets bottom="30.0" />
+         </padding>
+         <font>
+            <Font name="Tw Cen MT Condensed" size="34.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textField" prefHeight="45.0" prefWidth="536.0">
+         <VBox.margin>
+            <Insets left="200.0" right="200.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Tw Cen MT Condensed" size="21.0" />
+         </font>
+      </TextField>
+      <Button fx:id="button" mnemonicParsing="false" prefHeight="49.0" prefWidth="95.0" text="Next">
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Tw Cen MT Condensed" size="28.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>

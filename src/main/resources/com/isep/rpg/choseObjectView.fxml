@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="867.0" spacing="80.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.isep.rpg.controllers.ChoseObjectController">
+
+   <children>
+      <Label text="Chose an object in the list" textFill="#21398d">
+         <font>
+            <Font name="Tw Cen MT Condensed" size="48.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="objectColumn" prefWidth="75.0" text="Object" />
+          <TableColumn fx:id="valueColumn" prefWidth="75.0" text="Healing value" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button fx:id="button" mnemonicParsing="false" prefHeight="46.0" prefWidth="82.0" text="Use">
+         <font>
+            <Font name="Tw Cen MT Condensed" size="25.0" />
+         </font></Button>
+   </children>
+   <padding>
+      <Insets left="30.0" right="30.0" />
+   </padding>
+</VBox>

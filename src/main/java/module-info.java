@@ -3,10 +3,10 @@ module com.example.demo {
     requires javafx.fxml;
 
 
-    opens com.example.rpg to javafx.fxml;
-    exports com.example.rpg;
-    exports com.example.rpg.controllers;
-    opens com.example.rpg.controllers to javafx.fxml;
-    opens com.example.rpg.Combattant to javafx.base;
-    opens com.example.rpg.Item to javafx.base;
+    opens com.isep.rpg to javafx.fxml;
+    exports com.isep.rpg;
+    exports com.isep.rpg.controllers;
+    opens com.isep.rpg.controllers to javafx.fxml;
+    opens com.isep.rpg.Combattant to javafx.base;
+    opens com.isep.rpg.Item to javafx.base;
 }

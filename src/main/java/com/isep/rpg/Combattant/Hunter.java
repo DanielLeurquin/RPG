@@ -1,9 +1,6 @@
 package com.isep.rpg.Combattant;
 
-import com.isep.rpg.Item.Consumable;
-import com.isep.rpg.Item.Food;
-import com.isep.rpg.Item.Potion;
-import com.isep.rpg.Item.Weapon;
+import com.isep.rpg.Item.*;
 
 import java.util.ArrayList;
 
@@ -11,6 +8,7 @@ import java.util.ArrayList;
 public class Hunter extends Hero {
 
     private int arrows;
+    private boolean goldenArrow = false;
     public Hunter(String name, Team team){
         this.level = 1;
         this.name = name;
@@ -26,6 +24,7 @@ public class Hunter extends Hero {
         this.consumable = new ArrayList<Consumable>();
         this.addConsumable(new Potion());
         this.addConsumable(new Food());
+        this.addConsumable(new GoldenArrow());
         this.arrows = 5;
         Weapon w = new Weapon(12,"Bow",this);
         this.setSelectedTool(w);
@@ -36,6 +35,8 @@ public class Hunter extends Hero {
     //execute attack on target
     @Override
     public boolean action(Combattant target) {
+        int buff = 0;
+
         if(this.arrows<=0){
             this.lastDamage = 1;
             return false;
@@ -50,9 +51,15 @@ public class Hunter extends Hero {
                 return false;
             }
         }
+        if(this.goldenArrow){
+            this.goldenArrow = false;
+            buff = 100;
+
+        }
 
         int piercingDamage = (int)(Math.random()*5 + 2);
-        int attack = this.selectedTool.getDamage() * this.getStrength() + piercingDamage;
+        int attack = this.selectedTool.getDamage() * this.getStrength() + piercingDamage + buff;
+
         float damageDealed = (float)attack * (1-target.getDefense());
         target.setPv(target.getPv() - (int)damageDealed);
         if(target.getPv() > target.getMaxPv()){
@@ -72,6 +79,18 @@ public class Hunter extends Hero {
 
     }
 
+    public void setArrows(int arrows) {
+        this.arrows = arrows;
+    }
+
+    public int getArrows() {
+        return arrows;
+    }
+
+    public void setGoldenArrow(boolean goldenArrow) {
+        this.goldenArrow = goldenArrow;
+    }
+
     //upgrade stats
     @Override
     public void levelUp() {
@@ -79,6 +98,6 @@ public class Hunter extends Hero {
         this.setPv((int)(this.pv*(1.10)));
         this.strength += 1;
         this.setPv(maxPv);
-        this.addArrows(5+this.level-1);
+        this.setArrows(5+this.level-1);
     }
 }

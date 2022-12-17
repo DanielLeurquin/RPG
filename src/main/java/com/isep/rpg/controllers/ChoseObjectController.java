@@ -1,8 +1,10 @@
 package com.isep.rpg.controllers;
 
 import com.isep.rpg.Combattant.Hero;
+import com.isep.rpg.Combattant.Hunter;
 import com.isep.rpg.GuiParser;
 import com.isep.rpg.Item.Consumable;
+import com.isep.rpg.Item.GoldenArrow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class ChoseObjectController extends Controller{
@@ -49,7 +54,21 @@ public class ChoseObjectController extends Controller{
     public ObservableList<Consumable> getList(){
         ObservableList<Consumable> list = FXCollections.observableArrayList();
         Hero h = (Hero) this.parser.getGame().getActiveCombattant();
-        for(Consumable c : h.getConsumable()){
+
+        ArrayList<Consumable> list_c = (ArrayList<Consumable>) h.getConsumable().clone();
+        if(h instanceof Hunter){
+            Hunter hunter = (Hunter) h;
+            if(hunter.getArrows()>0){
+                for(Consumable consumable : list_c){
+                    if(consumable instanceof GoldenArrow){
+                        list_c.remove(consumable);
+                    }
+                }
+            }
+        }
+
+
+        for(Consumable c : list_c){
             list.add(c);
         }
         return list;

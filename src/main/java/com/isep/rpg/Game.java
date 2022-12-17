@@ -117,7 +117,7 @@ public class Game {
             pv = 1000*this.nbHero;
             pm = 0;
             defense = 0.1f;
-            strength = 5;
+            strength = 8 + 5*(this.nbHero-1);
         }
         this.enemyTeam = new Team();
         if(this.level!=5){

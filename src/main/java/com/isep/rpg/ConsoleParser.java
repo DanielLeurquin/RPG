@@ -3,8 +3,10 @@ package com.isep.rpg;
 import com.isep.rpg.Combattant.*;
 import com.isep.rpg.Item.Consumable;
 import com.isep.rpg.Item.Food;
+import com.isep.rpg.Item.GoldenArrow;
 import com.isep.rpg.Item.Potion;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -165,17 +167,32 @@ public class ConsoleParser implements InputParser {
     @Override
     public void choseConsumable(Hero hero) {
         System.out.println("Please choose which consumable you want to take ?");
+        ArrayList<Consumable> list_c = (ArrayList<Consumable>) hero.getConsumable().clone();
+        if(hero instanceof Hunter){
+            Hunter hunter = (Hunter) hero;
+            if(hunter.getArrows()>0){
+                for(Consumable consumable : list_c){
+                    if(consumable instanceof GoldenArrow){
+                        list_c.remove(consumable);
+                    }
+                }
+            }
+        }
+
         int compteur = 1;
-        for(Consumable consumable : hero.getConsumable()){
+        for(Consumable consumable : list_c){
             if(consumable instanceof Potion){
                 System.out.println("Potion ("+compteur+")");
-            }else {
+            }else if(consumable instanceof Food){
                 System.out.println("Food   ("+compteur+")");
+            }else if(consumable instanceof GoldenArrow){
+                System.out.println("Golden Arrow   ("+compteur+")");
+
             }
             compteur++;
         }
         int num = scanForNumber(this.sc);
-        if(num<1 || num >hero.getConsumable().size()){
+        if(num<1 || num >compteur){
             System.out.println("Please enter a valid number");
             num = scanForNumber(this.sc);
         }
@@ -238,9 +255,11 @@ public class ConsoleParser implements InputParser {
         if (c instanceof Food){
             System.out.println(h.getName()+" is using the object food !");
             this.displayCombattantPv(h);
-        }else {
+        }else if(c instanceof Potion){
             System.out.println(h.getName()+" is using the object potion !");
             this.displayCombattantPm(h);
+        }else if(c instanceof GoldenArrow){
+            System.out.println("The enemy is trembling as you draw your golden arrow");
         }
         this.game.endTurn();
     }

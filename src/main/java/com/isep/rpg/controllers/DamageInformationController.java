@@ -6,6 +6,8 @@ import com.isep.rpg.Combattant.Team;
 import com.isep.rpg.GuiParser;
 import com.isep.rpg.Item.Consumable;
 import com.isep.rpg.Item.Food;
+import com.isep.rpg.Item.GoldenArrow;
+import com.isep.rpg.Item.Potion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -85,9 +87,11 @@ public class DamageInformationController extends Controller{
         if(consumable instanceof Food){
             label.setText(this.parser.getGame().getActiveCombattant().getName()+
                     " healed his PV of "+consumable.getHeal()+" points ");
-        }else {
+        }else if(consumable instanceof Potion){
             label.setText(this.parser.getGame().getActiveCombattant().getName()+
                     " healed his PM of "+consumable.getHeal()+" points ");
+        }else if(consumable instanceof GoldenArrow){
+            label.setText("The enemy is trembling as you draw your golden arrow");
         }
 
     }

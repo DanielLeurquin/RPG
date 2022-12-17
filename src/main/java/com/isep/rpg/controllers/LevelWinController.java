@@ -17,7 +17,7 @@ public class LevelWinController extends Controller {
 
     @Override
     public void init(GuiParser parser) {
-        labelCongrat.setText("Congratulation you just won level "+(parser.getGame().getLevel()-1));
+        labelCongrat.setText("Congratulations you just won level "+(parser.getGame().getLevel()-1));
         labelLevel.setText("Now let's begin level "+parser.getGame().getLevel());
         button.setOnAction(event -> {
             try {

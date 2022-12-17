@@ -248,7 +248,7 @@ public class ConsoleParser implements InputParser {
     //self-explanatory
     @Override
     public void levelWin() {
-        System.out.println("Congratulation you defeated all your enemies !");
+        System.out.println("Congratulations you defeated all your enemies !");
         System.out.println("Your heros just became better !");
         this.displayTeam(this.game.getHeroTeam());
     }
@@ -257,7 +257,7 @@ public class ConsoleParser implements InputParser {
     @Override
     public void win() {
         System.out.println("\n"+"-".repeat(30)+"\n");
-        System.out.println("Congratulation juste won the game !!");
+        System.out.println("Congratulations juste won the game !!");
     }
 
     //self-explanatory

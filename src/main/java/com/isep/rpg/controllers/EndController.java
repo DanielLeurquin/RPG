@@ -18,7 +18,7 @@ public class EndController extends Controller{
     }
 
     public void win(){
-        label1.setText("Congratulation ! You won !");
+        label1.setText("Congratulations ! You won !");
 
     }
 

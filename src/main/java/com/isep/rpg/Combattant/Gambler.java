@@ -6,7 +6,7 @@ import com.isep.rpg.Item.Potion;
 import com.isep.rpg.Item.Weapon;
 
 import java.util.ArrayList;
-
+//another type of hero he has very low chance to do 1000 damage
 public class Gambler extends Hero{
 
     public Gambler(String name, Team team){

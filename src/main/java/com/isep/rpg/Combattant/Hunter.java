@@ -19,7 +19,7 @@ public class Hunter extends Hero {
         this.maxPm = this.pm;
         this.maxPv = this.pv;
         this.defense = 0.1f;
-        this.strength = 8;
+        this.strength = 10;
         this.team = team;
         this.team.addCombattant(this);
         this.heroType = HeroType.HUNTER;
@@ -27,7 +27,7 @@ public class Hunter extends Hero {
         this.addConsumable(new Potion());
         this.addConsumable(new Food());
         this.arrows = 5;
-        Weapon w = new Weapon(10,"Bow",this);
+        Weapon w = new Weapon(12,"Bow",this);
         this.setSelectedTool(w);
         this.failMessage = "Oh no you are out of arrows !";
 
@@ -37,8 +37,20 @@ public class Hunter extends Hero {
     @Override
     public boolean action(Combattant target) {
         if(this.arrows<=0){
+            this.lastDamage = 1;
             return false;
         }
+
+        if(target.getName() == "Ghost") {
+            int chance = (int) (Math.random() * 5);
+            if (chance == 5) {
+                chance = 4;
+            }
+            if (chance == 4) {
+                return false;
+            }
+        }
+
         int piercingDamage = (int)(Math.random()*5 + 2);
         int attack = this.selectedTool.getDamage() * this.getStrength() + piercingDamage;
         float damageDealed = (float)attack * (1-target.getDefense());
@@ -66,6 +78,7 @@ public class Hunter extends Hero {
         this.level += 1;
         this.setPv((int)(this.pv*(1.10)));
         this.strength += 1;
-        this.addArrows(5);
+        this.setPv(maxPv);
+        this.addArrows(5+this.level-1);
     }
 }

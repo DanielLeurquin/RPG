@@ -23,13 +23,25 @@ public class Warrior extends Hero {
         this.consumable = new ArrayList<Consumable>();
         this.addConsumable(new Potion());
         this.addConsumable(new Food());
-        Weapon w = new Weapon(12,"Axe",this);
+        Weapon w = new Weapon(7,"Axe",this);
         this.setSelectedTool(w);
+        this.failMessage = "Oh no the enemy just dodged your attack !";
     }
 
     //execute attck on target
     @Override
     public boolean action(Combattant target) {
+        if(target.getName() == "Ghost"){
+            int chance = (int)(Math.random()*5);
+            if(chance == 5){
+                chance = 4;
+            }
+            if(chance==4){
+                return false;
+            }
+
+
+        }
         int attack = this.selectedTool.getDamage() * this.getStrength();
         float damageDealed = (float)attack * (1-target.getDefense());
         target.setPv(target.getPv() - (int)damageDealed);
@@ -47,7 +59,6 @@ public class Warrior extends Hero {
     @Override
     public void levelUp() {
         this.level += 1;
-        this.setPv((int)(this.pv*(1.15)));
         this.defense += 0.02f;
         this.strength += 1;
         this.setPv(this.maxPv);

@@ -34,6 +34,7 @@ public class Healer extends SpellCaster{
     @Override
     public boolean action(Combattant target) {
         if(!this.canCastSpell()){
+            this.lastDamage = 1;
             return false;
         }
         int heal = this.selectedTool.getDamage()*this.strength - target.getStrength();
@@ -55,6 +56,7 @@ public class Healer extends SpellCaster{
         this.level += 1;
         this.setPv((int)(this.pv*(1.05)));
         this.setPm((int)(this.pm*(1.20)));
+        this.setPm(maxPm);
         this.selectedTool.setDamage((int)(this.selectedTool.getDamage()*(1.15)) );
     }
 }

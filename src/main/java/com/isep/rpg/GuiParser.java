@@ -81,7 +81,12 @@ public class GuiParser implements InputParser {
             this.controller = this.app.changeScene("/com/isep/rpg/damageInformation.fxml",this);
             DamageInformationController c = (DamageInformationController)this.controller;
 
-            c.setFailMessage(h.getFailMessage());
+            if(attacker.getLastDamage()==0){
+                c.setFailMessage("Oh no the enemy just dodged your attack !");
+            }else {
+                c.setFailMessage(h.getFailMessage());
+            }
+
 
         }catch (IOException e){
             e.printStackTrace();

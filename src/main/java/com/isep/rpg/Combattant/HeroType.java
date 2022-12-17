@@ -5,7 +5,9 @@ public enum HeroType {
     WARRIOR,
     HUNTER,
     HEALER,
-    MAGE;
+    MAGE,
+
+    GAMBLER;
 
     public String toSring(){
         if(this.equals(HeroType.WARRIOR)){
@@ -14,8 +16,10 @@ public enum HeroType {
             return "Hunter";
         }else if(this.equals(HeroType.HEALER)){
             return "Healer";
-        }else {
+        }else if(this.equals(HeroType.MAGE)){
             return "Mage";
+        }else {
+            return "Gambler";
         }
     }
 
@@ -29,6 +33,8 @@ public enum HeroType {
             return HeroType.HEALER;
         }else if(i == 4) {
             return HeroType.MAGE;
+        }else if(i == 5) {
+            return HeroType.GAMBLER;
         }else {
             return null;
         }

@@ -48,14 +48,16 @@ public class ConsoleParser implements InputParser {
         System.out.println("Hunter  (2)");
         System.out.println("Healer  (3)");
         System.out.println("Mage    (4)");
+        System.out.println("Gambler (5)");
 
         int num = scanForNumber(this.sc);
-        while (num!=1 && num!=2 && num!=3 && num!=4){
-            System.out.println("Please enter a number between 1 and 4");
+        while (num!=1 && num!=2 && num!=3 && num!=4 && num!=5){
+            System.out.println("Please enter a number between 1 and 5");
             System.out.println("Warrior (1)");
             System.out.println("Hunter  (2)");
             System.out.println("Healer  (3)");
             System.out.println("Mage    (4)");
+            System.out.println("Gambler (5)");
             num = scanForNumber(this.sc);
 
         }
@@ -223,6 +225,9 @@ public class ConsoleParser implements InputParser {
     @Override
     public void displayFail(Combattant attacker) {
         Hero h = (Hero)attacker;
+        if(attacker.getLastDamage()==0){
+            System.out.println("Oh no the enemy just dodged your attack !");
+        }
         System.out.println(h.getFailMessage());
         this.game.endTurn();
     }

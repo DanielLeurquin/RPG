@@ -15,7 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CreateHeroController extends Controller{
     ObservableList<HeroType> heroType = FXCollections.observableArrayList(HeroType.WARRIOR,
-            HeroType.HUNTER,HeroType.MAGE,HeroType.HEALER);
+            HeroType.HUNTER,HeroType.MAGE,HeroType.HEALER,HeroType.GAMBLER);
 
     @FXML
     private ChoiceBox choiceBox;

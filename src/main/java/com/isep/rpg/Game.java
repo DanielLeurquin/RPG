@@ -54,6 +54,8 @@ public class Game {
             new Healer(name,this.heroTeam);
         }else if(heroType.equals(HeroType.MAGE)){
             new Mage(name,this.heroTeam);
+        }else if(heroType.equals(HeroType.GAMBLER)){
+            new Gambler(name,this.heroTeam);
         }
         if(this.heroTeam.getTeamList().size()<this.nbHero){
             this.inputParser.askHeroType(this.getHeroTeam().getTeamList().size()+1);
@@ -88,31 +90,31 @@ public class Game {
         int strength;
         if (this.level == 1){
             name = "Bat";
-            pv = 500;
+            pv = 300;
             pm = 0;
             defense = 0.1f;
             strength = 5;
         }else if(this.level == 2){
             name = "Rat";
-            pv = 500;
+            pv = 350;
             pm = 0;
             defense = 0.1f;
-            strength = 5;
+            strength = 6;
         }else if(this.level == 3){
             name = "Ghost";
-            pv = 500;
+            pv = 400;
             pm = 0;
             defense = 0.1f;
-            strength = 5;
+            strength = 6;
         }else if(this.level == 4){
             name = "Zombie";
             pv = 500;
             pm = 0;
             defense = 0.1f;
-            strength = 5;
+            strength = 7;
         }else{
             name = "Boss";
-            pv = 2000;
+            pv = 1000*this.nbHero;
             pm = 0;
             defense = 0.1f;
             strength = 5;
@@ -139,7 +141,7 @@ public class Game {
 
     }
 
-    //apply the action chose by the player if if is an enemy turn then the action is attack
+    //apply the action chose by the player if is an enemy turn then the action is attack
     public void executeAction(ActionType action){
         if(action.equals(ActionType.ATTACK)){
             if(this.activeCombattant instanceof Hero){
@@ -149,7 +151,10 @@ public class Game {
                     this.inputParser.choseTarget(this.enemyTeam);
                 }
             }else {
-                int i = (int)(Math.random() * (this.heroTeam.getAliveList().size()-1));
+                int i = (int)(Math.random() * (this.heroTeam.getAliveList().size()));
+                if(i == this.heroTeam.getAliveList().size()){
+                    i = i-1;
+                }
                 Combattant target = this.heroTeam.getAliveList().get(i);
                 this.inflictDamage(this.activeCombattant,target);
             }

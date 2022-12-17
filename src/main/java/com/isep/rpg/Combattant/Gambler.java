@@ -7,8 +7,9 @@ import com.isep.rpg.Item.Weapon;
 
 import java.util.ArrayList;
 
-public class Mage extends SpellCaster{
-    public Mage(String name, Team team){
+public class Gambler extends Hero{
+
+    public Gambler(String name, Team team){
         this.level = 1;
         this.name = name;
         this.pv = 500;
@@ -16,28 +17,20 @@ public class Mage extends SpellCaster{
         this.maxPm = this.pm;
         this.maxPv = this.pv;
         this.defense = 0.1f;
-        this.strength = 2;
+        this.strength = 5;
         this.team = team;
         this.team.addCombattant(this);
-        this.heroType = HeroType.MAGE;
+        this.heroType = HeroType.GAMBLER;
         this.consumable = new ArrayList<Consumable>();
         this.addConsumable(new Potion());
         this.addConsumable(new Food());
-        Weapon w = new Weapon(23,"Wand",this);
+        this.failMessage = "Oh no the enemy just dodged your attack !";
+        Weapon w = new Weapon(6,"Dice",this);
         this.setSelectedTool(w);
-        this.failMessage = "Oh no ! You don't have enough mana to perform this action !";
-        this.spell = new Spell("Fire Ball",50);
     }
 
-
-    //execute attack on target
     @Override
     public boolean action(Combattant target) {
-
-        if(!this.canCastSpell()){
-            this.lastDamage = 1;
-            return false;
-        }
         if(target.getName() == "Ghost") {
             int chance = (int) (Math.random() * 5);
             if (chance == 5) {
@@ -48,8 +41,24 @@ public class Mage extends SpellCaster{
             }
         }
 
-        int attack = this.selectedTool.getDamage()*this.getStrength() + 11*this.level;
-        float damageDealed = (float)attack * (1-target.getDefense());
+        int damage;
+        int random = (int)(Math.random()*14);
+        if(random == 14) {
+            random = 13;
+        }
+        if(random<4) {
+            damage = 1 + this.level;
+        }else if(random<7) {
+            damage = 20 + 2*this.level;
+        }else if(random<11) {
+            damage = 60+ 4*this.level;
+        }else if(random<13) {
+            damage = 100 + 5*this.level;
+        }else {
+            damage = 1000;
+        }
+
+        float damageDealed = damage;
         target.setPv(target.getPv() - (int)damageDealed);
         if(target.getPv() > target.getMaxPv()){
             target.setPv(target.getMaxPv());
@@ -57,23 +66,15 @@ public class Mage extends SpellCaster{
             target.setPv(0);
             target.die();
         }
-        this.setPm(this.getPm()-this.getSpell().getManaCost());
-        this.lastDamage = (int) damageDealed;
+        this.lastDamage = (int)damageDealed;
         return true;
+
     }
 
-    //upgrade stats
     @Override
     public void levelUp() {
-        this.level += 1;
-        this.setPv((int)(this.pv*(1.05)));
-        this.setPm((int)(this.pm*(1.20)));
-        this.setPm(this.maxPm);
-        this.setPv((int)(this.maxPv/2)+this.getPv());
-        if(this.getPv()>maxPv){
-            this.setPv(maxPv);
-        }
-        this.strength += 1;
+        this.setPv(maxPv);
+        this.level+=1;
 
     }
 }
